@@ -1,8 +1,8 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 import string
 import sys
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self, body=True):
