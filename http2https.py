@@ -5,11 +5,13 @@ import sys
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
 class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
+    def do_GET(self, body=True):
         try:
-            # Parse the URL and convert to https
+            # Parse the URL and convert to HTTPS redirect
             self.send_response(301)
-            dest = "https://" + self.headers.get('Host') + self.path
+            dest = "https://" + self.headers.get('Host')
+            if (self.path):
+                dest += self.path
             print("Redirecting to " + dest)
             self.send_header("Location", dest)
         finally:
